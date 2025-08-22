@@ -52,10 +52,10 @@ while (true) {
 }
 
 function treinarPoderAtaque(person: Personagem): void {
-    person.poderAtaque += 3 + p.poderAtaque * 1.1;
+    person.treinarPoderAtaque();
 }
 function treinarPoderDefesa(person: Personagem): void {
-    person.poderDefesa += 3 + p.poderDefesa * 1.1;
+    person.treinarPoderDefesa();
 }
 
 console.table(p);
