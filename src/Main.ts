@@ -23,10 +23,11 @@ p.poderDefesa = 0.5;
 
 while (true) {
     console.log("+-------------Menu-------------+");
-    console.log("1. Treinar Poder de Ataque");
-    console.log("2. Treinar Poder de Defesa");
-    console.log("3. Ver Status");
-    console.log("9. Sair");
+    console.log("1. Treinar Poder de Ataque     |");
+    console.log("2. Treinar Poder de Defesa     |");
+    console.log("3. Ver Status                  |");
+    console.log("4. Checar se o personagem vive |");
+    console.log("9. Sair                        |");
     console.log("+------------------------------+");
 
     const escolha: number = +teclado("Escolha uma opção do menu: ");
@@ -43,6 +44,9 @@ while (true) {
             break;
         case 3:
             console.table(p);
+            break;
+        case 4:
+            console.log(p.estaVivo()? "Personagem vivo": "O personagem foi churrasqueado")
             break;
     
         default:

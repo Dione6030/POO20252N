@@ -42,4 +42,8 @@ export class Personagem {
         const incrementoDoTreino: number = Util.gerarNumeroAleatorio(5, 15);
         this.poderDefesa += incrementoDoTreino + this.poderDefesa * 1.1;
         }
+
+    estaVivo(){
+        return (this.vidaAtual > 0)
+    }
 }
