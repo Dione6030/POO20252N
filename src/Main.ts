@@ -59,13 +59,13 @@ while (true) {
             break;
         case 6:
             if (p.procurarEquipamento()){
-                console.log(`Você encontrou: ${p.armaEncontrada()} e ${p.armaEncontrada()} deseja equipá-los?`)
+                console.log(`Você encontrou: ${p.equpamentosEncontrados()} e ${p.equpamentosEncontrados()} deseja equipá-los?`)
                 console.log("1 - Não")
                 console.log("2 - Sim")
                 const escolhaEquipar: number = +teclado("Escolha uma opção do menu: ");
                 if (escolhaEquipar === 2){
-                    p.tipoArma = p.armaEncontrada();
-                    p.tipoArmadura = p.armaEncontrada();
+                    p.tipoArma = p.equpamentosEncontrados();
+                    p.tipoArmadura = p.equpamentosEncontrados();
                     console.log("Equipamentos atualizados com sucesso!")
                 } else {
                     console.log("Você optou por não equipar os itens.")
