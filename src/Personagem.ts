@@ -6,7 +6,9 @@ export class Personagem {
     raca: string;
     nivel: number
     experiencia: number
-    tipoEquipamento: string;
+
+    tipoArma: string;
+    tipoArmadura: string;
     
     manaAtual: number
     manaMaxima: number
@@ -22,7 +24,9 @@ export class Personagem {
         this.raca = "";
         this.nivel = 1;
         this.experiencia = 0;
-        this.tipoEquipamento = "";
+
+        this.tipoArma = "";
+        this.tipoArmadura = "";
 
         this.manaAtual = 0;
         this.manaMaxima = 0;
@@ -46,4 +50,29 @@ export class Personagem {
     estaVivo(){
         return (this.vidaAtual > 0)
     }
+
+    subirNivel(): void{
+        const experienciaNecessaria: number = this.nivel * 100;
+        if (this.experiencia >= experienciaNecessaria){
+            this.nivel += 1;
+            this.experiencia = 0; // Reseta a experiência
+            // Você pode adicionar outros efeitos de subir de nível aqui
+            this.manaMaxima += 3;
+            this.vidaMaxima += 4;
+            this.poderAtaque += 2;
+            this.poderDefesa += 2;
+        }
+    }
+
+    procurarEquipamento(): boolean{
+        const encontrouEquipamentos: number = Util.gerarNumeroAleatorio(0, 1);
+        return (encontrouEquipamentos === 1)
+    }
+    armaEncontrada(): string{
+        Util.gerarArma();
+        Util.gerarArmadura();
+        return Util.gerarArma(), Util.gerarArmadura();
+    }
+
+
 }
