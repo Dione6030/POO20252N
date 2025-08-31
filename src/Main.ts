@@ -27,9 +27,7 @@ while (true) {
     console.log("|1. Treinar Poder de Ataque              |");
     console.log("|2. Treinar Poder de Defesa              |");
     console.log("|3. Ver Status                           |");
-    console.log("|4. Checar se o personagem vive          |");
-    console.log("|5. Checar se o personagem Subiu de nivel|");
-    console.log("|6. Procurar por equipamentos            |");
+    console.log("|4. Procurar por equipamentos            |");
     console.log("|9. Sair                                 |");
     console.log("+----------------------------------------+");
 
@@ -49,23 +47,15 @@ while (true) {
             console.table(p);
             break;
         case 4:
-            console.log(p.estaVivo()? "Personagem vivo": "O personagem foi churrasqueado")
-            break;
-        case 5:
-            const antes = { ...p, status: "Antes" };
-            p.subirNivel();
-            const depois = { ...p, status: "Depois" };
-            console.table([antes, depois]);
-            break;
-        case 6:
             if (p.procurarEquipamento()){
-                console.log(`Você encontrou: ${p.equpamentosEncontrados()} e ${p.equpamentosEncontrados()} deseja equipá-los?`)
+                const equipamentos = p.equipamentosEncontrados();
+                console.log(`Você encontrou: ${equipamentos.arma} e ${equipamentos.armadura} deseja equipá-los?`)
                 console.log("1 - Não")
                 console.log("2 - Sim")
                 const escolhaEquipar: number = +teclado("Escolha uma opção do menu: ");
                 if (escolhaEquipar === 2){
-                    p.tipoArma = p.equpamentosEncontrados();
-                    p.tipoArmadura = p.equpamentosEncontrados();
+                    p.tipoArma = equipamentos.arma;
+                    p.tipoArmadura = equipamentos.armadura;
                     console.log("Equipamentos atualizados com sucesso!")
                 } else {
                     console.log("Você optou por não equipar os itens.")

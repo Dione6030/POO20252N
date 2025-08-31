@@ -68,10 +68,10 @@ export class Personagem {
         const encontrouEquipamentos: number = Util.gerarNumeroAleatorio(0, 1);
         return (encontrouEquipamentos === 1)
     }
-    equpamentosEncontrados(): string{
-        Util.gerarArma();
-        Util.gerarArmadura();
-        return Util.gerarArma(), Util.gerarArmadura();
+    equipamentosEncontrados(): { arma: string, armadura: string } {
+        const arma = Util.gerarArma();
+        const armadura = Util.gerarArmadura();
+        return { arma, armadura };
     }
 
 
