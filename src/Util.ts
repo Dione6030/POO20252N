@@ -624,3 +624,4 @@ for (let index = 0; index < 10; index++) {
     const armadura = Util.gerarArmadura();
     console.log(`Arma: ${arma} | Armadura: ${armadura}`);
 }
+

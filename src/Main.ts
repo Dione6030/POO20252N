@@ -27,7 +27,8 @@ while (true) {
     console.log("|1. Treinar Poder de Ataque              |");
     console.log("|2. Treinar Poder de Defesa              |");
     console.log("|3. Ver Status                           |");
-    console.log("|4. Procurar por equipamentos            |");
+    console.log("|4. Ver Inventário                       |");
+    console.log("|5. Procurar por equipamentos            |");
     console.log("|9. Sair                                 |");
     console.log("+----------------------------------------+");
 
@@ -47,19 +48,48 @@ while (true) {
             console.table(p);
             break;
         case 4:
+            console.log("+---+-------------Inventário-----------------+---------------------------------------------+");
+            console.log("|Nº |Armas...................................|Armaduras....................................|")
+            let i = 0;
+            for (const linha of p.inventario) {
+                const arma = linha.arma ?? "";
+                const armadura = linha.armadura ?? "";
+
+                console.log(`|${i.toString().padEnd(3)}|${arma.padEnd(40)}|${armadura.padEnd(45)}|`);
+                i++;
+            }
+            console.log("+---+--------------------------------------+---------------------------------------------+");
+            console.log("1. Equipar arma");
+            console.log("2. Equipar armadura");
+            console.log("3. Jogar fora Arma");
+            console.log("4. Jogar fora Armadura");
+            console.log("5. Voltar");
+            const escolhasInventario: number = +teclado("Escolha uma opção do inventário: ");
+            switch (escolhasInventario) {
+                case 1:
+                    const escolhaEquiparArma: number = +teclado("Escolha o número da arma que deseja equipar: ");
+                    p.equiparArma(escolhaEquiparArma);
+                    break;
+                case 2:
+                    const escolhaEquiparArmadura: number = +teclado("Escolha o número da armadura que deseja equipar: ");
+                    p.equiparArmadura(escolhaEquiparArmadura);
+                    break;
+                case 3:
+                    const escolhaJogarForaArma: number = +teclado("Escolha o número da arma que deseja jogar fora: ");
+                    p.removerArma(p, escolhaJogarForaArma);
+                    break;
+                case 4:
+                    const escolhaJogarForaArmadura: number = +teclado("Escolha o número da armadura que deseja jogar fora: ");
+                    p.removerArmadura(p, escolhaJogarForaArmadura);
+                    break;
+                case 5:
+                    break;
+            }
+
+        case 5:
             if (p.procurarEquipamento()){
                 const equipamentos = p.equipamentosEncontrados();
-                console.log(`Você encontrou: ${equipamentos.arma} e ${equipamentos.armadura} deseja equipá-los?`)
-                console.log("1 - Não")
-                console.log("2 - Sim")
-                const escolhaEquipar: number = +teclado("Escolha uma opção do menu: ");
-                if (escolhaEquipar === 2){
-                    p.tipoArma = equipamentos.arma;
-                    p.tipoArmadura = equipamentos.armadura;
-                    console.log("Equipamentos atualizados com sucesso!")
-                } else {
-                    console.log("Você optou por não equipar os itens.")
-                }
+                console.log(`Você encontrou: ${equipamentos.arma} e ${equipamentos.armadura} abra o inventario para equipar!`)
             } else {
                 console.log("Você não encontrou nenhum equipamento.")
             }

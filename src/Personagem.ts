@@ -74,5 +74,43 @@ export class Personagem {
         return { arma, armadura };
     }
 
+    inventarioArma: string[] = [];
+    inventarioArmadura: string[] = [];
 
+    adicionarArma(arma: string): void {
+        this.inventarioArma.push(arma);
+    }
+
+    adicionarArmadura(armadura: string): void {
+        this.inventarioArmadura.push(armadura);
+    }
+
+    removerArma(arma: string): void {
+        const index = this.inventarioArma.indexOf(arma);
+        if (index > -1) {
+            this.inventarioArma.splice(index, 1);
+        }
+    }
+
+    removerArmadura(armadura: string): void {
+        const index = this.inventarioArmadura.indexOf(armadura);
+        if (index > -1) {
+            this.inventarioArmadura.splice(index, 1);
+        }
+    }
+
+    get inventario(): { arma?: string, armadura?: string }[] {
+        const max = Math.max(this.inventarioArma.length, this.inventarioArmadura.length);
+        const lista: { arma?: string, armadura?: string }[] = [];
+
+        for (let i = 0; i < max; i++) {
+            const linha: { arma?: string, armadura?: string } = {};
+            const a = this.inventarioArma[i];
+            const b = this.inventarioArmadura[i];
+            if (a !== undefined) linha.arma = a;
+            if (b !== undefined) linha.armadura = b;
+            lista.push(linha);
+        }
+        return lista;
+    }
 }
