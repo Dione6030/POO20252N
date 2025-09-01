@@ -48,17 +48,17 @@ while (true) {
             console.table(p);
             break;
         case 4:
-            console.log("+---+-------------Inventário-----------------+---------------------------------------------+");
-            console.log("|Nº |Armas...................................|Armaduras....................................|")
-            let i = 0;
+            console.log("+---+-------------Inventário-----------------------+---------------------------------------------+");
+            console.log("|Nº |Armas.............................................|Armaduras......................................|")
+            let i = 1;
             for (const linha of p.inventario) {
                 const arma = linha.arma ?? "";
                 const armadura = linha.armadura ?? "";
 
-                console.log(`|${i.toString().padEnd(3)}|${arma.padEnd(40)}|${armadura.padEnd(45)}|`);
+                console.log(`|${i.toString().padEnd(3)}|${arma.padEnd(50)}|${armadura.padEnd(47)}|`);
                 i++;
             }
-            console.log("+---+--------------------------------------+---------------------------------------------+");
+            console.log("+---+--------------------------------------------------+-----------------------------------------------+");
             console.log("1. Equipar arma");
             console.log("2. Equipar armadura");
             console.log("3. Jogar fora Arma");
@@ -76,15 +76,19 @@ while (true) {
                     break;
                 case 3:
                     const escolhaJogarForaArma: number = +teclado("Escolha o número da arma que deseja jogar fora: ");
-                    p.removerArma(p, escolhaJogarForaArma);
+                    p.removerArma(escolhaJogarForaArma);
                     break;
                 case 4:
                     const escolhaJogarForaArmadura: number = +teclado("Escolha o número da armadura que deseja jogar fora: ");
-                    p.removerArmadura(p, escolhaJogarForaArmadura);
+                    p.removerArmadura(escolhaJogarForaArmadura);
                     break;
                 case 5:
                     break;
+
+                default:
+                    console.log("Opção inválida, tente novamente.");
             }
+            break;
 
         case 5:
             if (p.procurarEquipamento()){

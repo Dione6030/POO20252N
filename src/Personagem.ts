@@ -1,22 +1,23 @@
+import { th } from "@faker-js/faker";
 import { Util } from "./Util";
 
 export class Personagem {
-    nome: string;
-    classe: string;
-    raca: string;
-    nivel: number
-    experiencia: number
+    public nome: string;
+    public classe: string;
+    public raca: string;
+    public nivel: number
+    public experiencia: number
 
-    tipoArma: string;
-    tipoArmadura: string;
+    public tipoArma: string;
+    public tipoArmadura: string;
     
-    manaAtual: number
-    manaMaxima: number
-    vidaAtual: number
-    vidaMaxima: number
+    public manaAtual: number
+    public manaMaxima: number
+    public vidaAtual: number
+    public vidaMaxima: number
 
-    poderAtaque: number
-    poderDefesa: number
+    public poderAtaque: number
+    public poderDefesa: number
     
     constructor(nome: string) {
         this.nome = nome;
@@ -71,6 +72,10 @@ export class Personagem {
     equipamentosEncontrados(): { arma: string, armadura: string } {
         const arma = Util.gerarArma();
         const armadura = Util.gerarArmadura();
+
+        // vai guardar no inventário automaticamente
+        this.adicionarArma(arma);
+        this.adicionarArmadura(armadura);
         return { arma, armadura };
     }
 
@@ -83,20 +88,6 @@ export class Personagem {
 
     adicionarArmadura(armadura: string): void {
         this.inventarioArmadura.push(armadura);
-    }
-
-    removerArma(arma: string): void {
-        const index = this.inventarioArma.indexOf(arma);
-        if (index > -1) {
-            this.inventarioArma.splice(index, 1);
-        }
-    }
-
-    removerArmadura(armadura: string): void {
-        const index = this.inventarioArmadura.indexOf(armadura);
-        if (index > -1) {
-            this.inventarioArmadura.splice(index, 1);
-        }
     }
 
     get inventario(): { arma?: string, armadura?: string }[] {
@@ -113,4 +104,52 @@ export class Personagem {
         }
         return lista;
     }
+    equiparArma(indice: number): boolean {
+        const i= indice - 1;
+        const arma = this.inventarioArma[i];
+        if (arma !== undefined) {
+            this.tipoArma = arma;
+            console.log(`Arma ${this.tipoArma} equipada.`);
+            return true;
+        } else{
+            console.log("Índice inválido para equipar arma.");
+            return false;
+        }
+    }
+    equiparArmadura(indice: number): boolean {
+        const i= indice - 1;
+        const armadura = this.inventarioArmadura[i];
+        if (armadura !== undefined) {
+            this.tipoArmadura = armadura;
+            console.log(`Armadura ${this.tipoArmadura} equipada.`);
+            return true;
+        } else{
+            console.log("Índice inválido para equipar armadura.");
+            return false;
+        }
+    }
+
+    
+    removerArma(indice: number): boolean {
+        const i = indice - 1;
+        if (i >= 0 && i < this.inventarioArma.length) {
+            const removida = this.inventarioArma.splice(i, 1)[0];
+            console.log(`Arma removida: ${removida}`);
+            return true;
+        }
+        console.log("Índice de arma inválido.");
+        return false;
+    }
+    
+    removerArmadura(indice: number): boolean {
+        const i = indice - 1;
+        if (i >= 0 && i < this.inventarioArmadura.length) {
+            const removida = this.inventarioArmadura.splice(i, 1)[0];
+            console.log(`Armadura removida: ${removida}`);
+            return true;
+        }
+        console.log("Índice de armadura inválido.");
+        return false;
+    }
+
 }

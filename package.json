@@ -8,7 +8,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "devDependencies": {
     "@faker-js/faker": "^10.0.0",
     "@types/prompt-sync": "^4.2.3",
@@ -23,5 +22,6 @@
   "bugs": {
     "url": "https://github.com/Dione6030/POO20252N/issues"
   },
-  "homepage": "https://github.com/Dione6030/POO20252N#readme"
+  "homepage": "https://github.com/Dione6030/POO20252N#readme",
+  "description": ""
 }
