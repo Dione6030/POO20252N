@@ -29,6 +29,11 @@ while (true) {
     console.log("|3. Ver Status                           |");
     console.log("|4. Ver Inventário                       |");
     console.log("|5. Procurar por equipamentos            |");
+    if (p.nivel > 2){
+        console.log("|6. Pesquisar Magias Nível 2             |");
+    } else {
+        console.log("|6. Pesquisar Magias Nível 1             |");
+    }
     console.log("|9. Sair                                 |");
     console.log("+----------------------------------------+");
 
@@ -98,6 +103,9 @@ while (true) {
                 console.log("Você não encontrou nenhum equipamento.")
             }
             break
+
+        case 6:
+            if ()
     
         default:
             console.log("Opção inválida, tente novamente.");

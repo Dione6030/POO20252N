@@ -18,6 +18,10 @@ export class Personagem {
 
     public poderAtaque: number
     public poderDefesa: number
+
+    public slotMagia1: string;
+    public slotMagia2: string;
+    public slotMagia3: string;
     
     constructor(nome: string) {
         this.nome = nome;
@@ -36,6 +40,10 @@ export class Personagem {
 
         this.poderAtaque = 0;
         this.poderDefesa = 0;
+        
+        this.slotMagia1 = "";
+        this.slotMagia2 = "";
+        this.slotMagia3 = "";
     }
 
     treinarPoderAtaque(): void {
@@ -150,6 +158,17 @@ export class Personagem {
         }
         console.log("Índice de armadura inválido.");
         return false;
+    }
+
+    pesquisarMagia(): boolean{
+        const aprendeuMagia: number = Util.gerarNumeroAleatorio(0, 1);
+        return (aprendeuMagia === 1)
+    }
+    magiaAprendida(): { magiaNi1: string, magiaNi2: string } {
+        const magiaNi1 = Util.gerarMagia1();
+        const magiaNi2 = Util.gerarMagia2();
+
+        return { magiaNi1, magiaNi2 };
     }
 
 }

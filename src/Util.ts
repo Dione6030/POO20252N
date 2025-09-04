@@ -617,6 +617,107 @@ export class Util {
             break;
         }
     }
+
+    static gerarMagia1(): string{
+        const dMagia = Util.gerarNumeroAleatorio(1, 4);
+
+        switch(dMagia){
+            case 1:
+                const magiaFogo = [
+            "Chamas Ágeis",          // Dano rápido e aumenta velocidade do conjurador
+            "Explosão Ígnea",        // Bola de fogo em área
+            ];
+                const indice1 = Util.gerarNumeroAleatorio(0, magiaFogo.length-1)
+                const nivelAleatório1 = Util.gerarNumeroAleatorio(1, 3)
+                return `${magiaFogo[indice1]} [Nível: ${nivelAleatório1}]`
+            break;
+
+            case 2:
+                const magiaGelo = [
+            "Lâminas de Gelo",       // Fragmentos perfurantes de gelo
+            "Prisão Glacial",        // Congela inimigo e impede ações
+                ];
+                const indice2 = Util.gerarNumeroAleatorio(0, magiaGelo.length-1)
+                const nivelAleatório2 = Util.gerarNumeroAleatorio(1, 3)
+                return `${magiaGelo[indice2]} [Nível: ${nivelAleatório2}]`
+            break;
+
+            case 3:
+                const magiaTrovão = [
+            "Raio Ágil",             // Relâmpago rápido em um inimigo
+            "Cadeia Elétrica",       // Raio salta entre vários inimigos
+                ];
+                const indice3 = Util.gerarNumeroAleatorio(0, magiaTrovão.length-1)
+                const nivelAleatório3 = Util.gerarNumeroAleatorio(1, 3)
+                return `${magiaTrovão[indice3]} [Nível: ${nivelAleatório3}]`
+            break;
+
+            case 4:
+                const magiaSombra = [
+            "Toque Sombrio",         // Rouba vida do inimigo
+            "Névoa do Medo",         // Reduz precisão dos inimigos
+                ];
+                const indice4 = Util.gerarNumeroAleatorio(0, magiaSombra.length-1)
+                const nivelAleatório4 = Util.gerarNumeroAleatorio(1, 3)
+                return `${magiaSombra[indice4]} [Nível: ${nivelAleatório4}]`
+            break;
+            
+            default:
+                throw new Error("Alguma coisa deu errado");
+                break;
+        }
+
+    }
+    static gerarMagia2(): string{
+        const dMagia = Util.gerarNumeroAleatorio(1, 4);
+
+        switch(dMagia){
+            case 1:
+                const magiaFogo = [
+            "Fogo de Fênix",         // Muito dano + cura parcial
+            "Inferno Ascendente"     // Coluna de fogo que ignora defesa
+                ];
+                const indice1 = Util.gerarNumeroAleatorio(0, magiaFogo.length-1)
+                const nivelAleatório1 = Util.gerarNumeroAleatorio(1, 3)
+                return `${magiaFogo[indice1]} [Nível: ${nivelAleatório1}]`
+            break;
+
+            case 2:
+                const magiaGelo = [
+            "Nevasca Mortal",        // Tempestade de gelo em área
+            "Coração Congelado"      // Reduz ataque inimigo e drena energia vital
+                ];
+                const indice2 = Util.gerarNumeroAleatorio(0, magiaGelo.length-1)
+                const nivelAleatório2 = Util.gerarNumeroAleatorio(1, 3)
+                return `${magiaGelo[indice2]} [Nível: ${nivelAleatório2}]`
+            break;
+
+            case 3:
+                const magiaTrovão = [
+            "Tempestade de Zeus",    // Invoca raios massivos do céu
+            "Pulso Estático"         // Paralisa inimigo por 1 turno
+                ];
+                const indice3 = Util.gerarNumeroAleatorio(0, magiaTrovão.length-1)
+                const nivelAleatório3 = Util.gerarNumeroAleatorio(1, 3)
+                return `${magiaTrovão[indice3]} [Nível: ${nivelAleatório3}]`
+            break;
+
+            case 4:
+                const magiaSombra = [
+            "Explosão Abissal",      // Alto dano em alvo único
+            "Correntes do Vazio"     // Prende e reduz defesa do inimigo
+                ];
+                const indice4 = Util.gerarNumeroAleatorio(0, magiaSombra.length-1)
+                const nivelAleatório4 = Util.gerarNumeroAleatorio(1, 3)
+                return `${magiaSombra[indice4]} [Nível: ${nivelAleatório4}]`
+            break;
+            
+            default:
+                throw new Error("Alguma coisa deu errado");
+                break;
+        }
+
+    }
 }
 
 for (let index = 0; index < 10; index++) {
@@ -625,3 +726,12 @@ for (let index = 0; index < 10; index++) {
     console.log(`Arma: ${arma} | Armadura: ${armadura}`);
 }
 
+for (let index = 0; index < 10; index++){
+    const magiaN1 = Util.gerarMagia1();
+    console.log(`Magia de nivel 1 "${magiaN1}" foi aprendida`)
+}
+
+for (let index = 0; index < 10; index++){
+    const magiaN2 = Util.gerarMagia2();
+    console.log(`Magia de nivel 2 "${magiaN2}" foi aprendida`)
+}
