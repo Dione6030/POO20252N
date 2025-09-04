@@ -23,6 +23,10 @@ p.poderDefesa = 0.5;
 
 
 while (true) {
+    if (!confirmaVida(p)){
+        console.log("Você está morto, reinicie!")
+        break
+    }
     console.log("+------------------Menu------------------+");
     console.log("|1. Treinar Poder de Ataque              |");
     console.log("|2. Treinar Poder de Defesa              |");
@@ -34,6 +38,8 @@ while (true) {
     } else {
         console.log("|6. Pesquisar Magias Nível 1             |");
     }
+    console.log("|7. Descansar                            |");
+    console.log("|8. Procurar Inimigo                     |")
     console.log("|9. Sair                                 |");
     console.log("+----------------------------------------+");
 
@@ -107,11 +113,92 @@ while (true) {
         case 6:
             if (p.nivel > 2) {
                 if (p.pesquisarMagia()){
-                    const magias = p.magiaAprendida();
-                    console.log
+                    console.log(`Você aprendeu: ${p.magiaAprendida().magiaNi2} deseja manter?`);
+                    console.log("1 - Não");
+                    console.log("2 - Sim");
+
+                    const escolhaManter: number = +teclado("Escolha uma opção: ");
+                    switch(escolhaManter){
+                        case 1:
+                            console.log("Você optou por Esquecer.")
+                            break
+
+                        case 2:
+                            console.log("Em qual slot de Magia deseja?")
+                            console.log("1 - 1º slot de magia.")
+                            console.log("2 - 2º slot de magia.")
+                            console.log("3 - 3º slot de magia.")
+                            const escolhaSlotMagia: number = +teclado("Escolhe o Slot:")
+                            
+                            switch(escolhaSlotMagia){
+                                case 1:
+                                    p.slotMagia1 = p.magiaAprendida().magiaNi2;
+                                    console.log("A magia foi equipada no 1º Slot")
+                                    break
+                                case 2:
+                                    p.slotMagia2 = p.magiaAprendida().magiaNi2;
+                                    console.log("A magia foi equipada no 2º Slot")
+                                    break
+                                case 3:
+                                    p.slotMagia3 = p.magiaAprendida().magiaNi2;
+                                    console.log("A magia foi equipada no 3º Slot")
+                                    break
+                                
+                                default:
+                                    console.log("Opção inválida, tente novamente.");
+                            }
+                    }
+
+                }
+            } else {
+                if (p.pesquisarMagia()){
+                    console.log(`Você aprendeu: ${p.magiaAprendida().magiaNi1} deseja manter?`);
+                    console.log("1 - Não");
+                    console.log("2 - Sim");
+
+                    const escolhaManter: number = +teclado("Escolha uma opção: ");
+                    switch(escolhaManter){
+                        case 1:
+                            console.log("Você optou por Esquecer.")
+                            break
+
+                        case 2:
+                            console.log("Em qual slot de Magia deseja?")
+                            console.log("1 - 1º slot de magia.")
+                            console.log("2 - 2º slot de magia.")
+                            console.log("3 - 3º slot de magia.")
+                            const escolhaSlotMagia: number = +teclado("Escolhe o Slot:")
+                            
+                            switch(escolhaSlotMagia){
+                                case 1:
+                                    p.slotMagia1 = p.magiaAprendida().magiaNi1;
+                                    console.log("A magia foi equipada no 1º Slot")
+                                    break
+                                case 2:
+                                    p.slotMagia2 = p.magiaAprendida().magiaNi1;
+                                    console.log("A magia foi equipada no 2º Slot")
+                                    break
+                                case 3:
+                                    p.slotMagia3 = p.magiaAprendida().magiaNi1;
+                                    console.log("A magia foi equipada no 3º Slot")
+                                    break
+                                
+                                default:
+                                    console.log("Opção inválida, tente novamente.");
+                            }
+                    }
+
                 }
             }
-    
+            break
+
+        case 7:
+            p.descansar();
+            break
+
+        case 8:
+            
+
         default:
             console.log("Opção inválida, tente novamente.");
             break;
@@ -123,6 +210,9 @@ function treinarPoderAtaque(person: Personagem): void {
 }
 function treinarPoderDefesa(person: Personagem): void {
     person.treinarPoderDefesa();
+}
+function confirmaVida(person: Personagem): boolean {
+    return person.estaVivo();
 }
 
 console.table(p);

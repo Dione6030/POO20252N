@@ -56,10 +56,6 @@ export class Personagem {
         this.poderDefesa += incrementoDoTreino + this.poderDefesa * 1.1;
         }
 
-    estaVivo(){
-        return (this.vidaAtual > 0)
-    }
-
     subirNivel(): void{
         const experienciaNecessaria: number = this.nivel * 100;
         if (this.experiencia >= experienciaNecessaria){
@@ -71,6 +67,22 @@ export class Personagem {
             this.poderAtaque += 2;
             this.poderDefesa += 2;
         }
+    }
+
+    estaVivo(): boolean{
+        const vivo: number = this.vidaAtual
+        return (vivo > 0)
+    }
+
+    descansar(): void{
+        const recuperarVida = Math.floor(this.vidaMaxima * 0.20)
+        const recuperarMana = Math.floor(this.manaMaxima * 0.20)
+
+        this.vidaAtual = Math.min(this.vidaAtual + recuperarVida, this.vidaMaxima);
+        this.manaAtual = Math.min(this.manaAtual + recuperarMana, this.manaMaxima);
+
+        console.log(`Você descansou e recuperou ${recuperarVida} de vida e ${recuperarMana} de mana.`);
+        console.log(`Vida atual: ${this.vidaAtual}/${this.vidaMaxima}, Mana atual: ${this.manaAtual}/${this.manaMaxima}`);
     }
 
     procurarEquipamento(): boolean{

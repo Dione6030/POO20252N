@@ -1,7 +1,6 @@
 import { fakerPT_BR as faker } from '@faker-js/faker';
 
 export class Util {
-    
     static gerarNumeroAleatorio(minimo: number, maximo: number): number {
         return minimo + Math.round(Math.random()* (maximo - minimo))
     }
@@ -35,26 +34,26 @@ export class Util {
   "Martelo Gigante da Ruína de Malphas",
 
   // Espadão
-  "Espadão de Drizzt",
-  "Espadão de Elric",
-  "Espadão de Arkhon",
-  "Espadão de Guts",
-  "Espadão de Arthas",
-  "Espadão Flamejante de Ifrit",
-  "Espadão Congelante de Shiva",
-  "Espadão Trovejante de Zeus",
-  "Espadão Sombrio de Noctis",
-  "Espadão de Beowulf",
-  "Espadão de Siegfried",
-  "Espadão de Astarion",
-  "Espadão de Vlad",
-  "Espadão de Balthazar",
-  "Espadão de Xandar",
-  "Espadão Ígneo de Belial",
-  "Espadão Tempestuoso de Fujin",
-  "Espadão Glacial de Khione",
-  "Espadão Abissal de Orcus",
-  "Espadão da Destruição de Veyra",
+  "Espada Gigante de Drizzt",
+  "Espada Gigante de Elric",
+  "Espada Gigante de Arkhon",
+  "Espada Gigante de Guts",
+  "Espada Gigante de Arthas",
+  "Espada Gigante Flamejante de Ifrit",
+  "Espada Gigante Congelante de Shiva",
+  "Espada Gigante Trovejante de Zeus",
+  "Espada Gigante Sombrio de Noctis",
+  "Espada Gigante de Beowulf",
+  "Espada Gigante de Siegfried",
+  "Espada Gigante de Astarion",
+  "Espada Gigante de Vlad",
+  "Espada Gigante de Balthazar",
+  "Espada Gigante de Xandar",
+  "Espada Gigante Ígneo de Belial",
+  "Espada Gigante Tempestuoso de Fujin",
+  "Espada Gigante Glacial de Khione",
+  "Espada Gigante Abissal de Orcus",
+  "Espada Gigante da Destruição de Veyra",
 
   // Machadão
   "Machadão de Gruumsh",
@@ -715,6 +714,68 @@ export class Util {
             default:
                 throw new Error("Alguma coisa deu errado");
                 break;
+        }
+
+    }
+
+    static gerarInimigos(): string{
+        const dQuatro = Util.gerarNumeroAleatorio(1, 4);
+
+        switch(dQuatro){
+        case 1:
+            const slimes =  [
+                "Slime sem elemento",
+                "Slime de Fogo",
+                "Slime de Gelo",
+                "Slime de Trovão",
+                "Slime das Sombras"
+            ];
+            const indice1 = Util.gerarNumeroAleatorio(0, slimes.length - 1)
+            const nivelAleatório1 = Util.gerarNumeroAleatorio(1,3)
+            return `${slimes[indice1]} [Nível: ${nivelAleatório1}]`
+
+        case 2:
+            const imps = [
+                "Imp sem elemento",
+                "Imp de Fogo",
+                "Imp de Gelo",
+                "Imp de Trovão",
+                "Imp das Sombras"
+            ];
+            const indice2 = Util.gerarNumeroAleatorio(0, imps.length - 1)
+            const nivelAleatório2 = Util.gerarNumeroAleatorio(1,3)
+            return `${imps[indice2]} [Nível: ${nivelAleatório2}]`
+
+        case 3:
+            const zumbis = [
+                "Zumbi comum",
+                "Zumbi de Fogo",
+                "Zumbi de Gelo",
+                "Zumbi de Trovão",
+                "Zumbi das Sombras"
+            ];
+            const indice3 = Util.gerarNumeroAleatorio(0, zumbis.length - 1)
+            const nivelAleatório3 = Util.gerarNumeroAleatorio(1,3)
+            return `${zumbis[indice3]} [Nível: ${nivelAleatório3}]`
+
+        case 4:
+            const bandidos =  [
+                "Bandido Ladrão",
+                "Bandido Guerreiro",
+                "Bandido Arqueiro",
+                "Bandido Assassino",
+                "Bandido Mago de Fogo",
+                "Bandido Mago de Gelo",
+                "Bandido Mago de Trovão",
+                "Bandido Mago das Sombras"
+            ];
+            const indice4 = Util.gerarNumeroAleatorio(0, bandidos.length - 1)
+            const nivelAleatório4 = Util.gerarNumeroAleatorio(1,3)
+            return `${bandidos[indice4]} [Nível: ${nivelAleatório4}]`
+        
+            default:
+            throw new Error("Alguma coisa deu errado");
+            break;
         }
 
     }
