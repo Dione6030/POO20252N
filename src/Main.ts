@@ -105,7 +105,12 @@ while (true) {
             break
 
         case 6:
-            if ()
+            if (p.nivel > 2) {
+                if (p.pesquisarMagia()){
+                    const magias = p.magiaAprendida();
+                    console.log
+                }
+            }
     
         default:
             console.log("Opção inválida, tente novamente.");
