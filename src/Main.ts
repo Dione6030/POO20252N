@@ -1,5 +1,6 @@
 import { Personagem } from "./Personagem";
 import Prompt from "prompt-sync";
+import { AtributosArma } from "./Armas"
 
 const teclado = Prompt();
 
@@ -20,6 +21,10 @@ p.vidaAtual = p.vidaMaxima;
 
 p.poderAtaque = 1;
 p.poderDefesa = 0.5;
+
+p.slotMagia1 = "Fire Ball";
+p.slotMagia2 = "Hell Fire";
+p.slotMagia3 = "Gelo Frio";
 
 
 while (true) {
@@ -197,7 +202,7 @@ while (true) {
             break
 
         case 8:
-            
+
 
         default:
             console.log("Opção inválida, tente novamente.");
