@@ -1,6 +1,7 @@
 import { Personagem } from "./Personagem";
 import Prompt from "prompt-sync";
 import { AtributosArma } from "./Armas"
+import { el } from "@faker-js/faker";
 
 const teclado = Prompt();
 
@@ -20,6 +21,7 @@ p.vidaMaxima = 5;
 p.vidaAtual = p.vidaMaxima;
 
 p.poderAtaque = 1;
+p.poderMagico = 3;
 p.poderDefesa = 0.5;
 
 p.slotMagia1 = "Fire Ball";
@@ -33,7 +35,7 @@ while (true) {
         break
     }
     console.log("+------------------Menu------------------+");
-    console.log("|1. Treinar Poder de Ataque              |");
+    console.log("|1. Treinar Poder de Ataque ou Mágico    |");
     console.log("|2. Treinar Poder de Defesa              |");
     console.log("|3. Ver Status                           |");
     console.log("|4. Ver Inventário                       |");
@@ -44,7 +46,7 @@ while (true) {
         console.log("|6. Pesquisar Magias Nível 1             |");
     }
     console.log("|7. Descansar                            |");
-    console.log("|8. Procurar Inimigo                     |")
+    console.log("|8. Atacar-se                            |")
     console.log("|9. Sair                                 |");
     console.log("+----------------------------------------+");
 
@@ -55,7 +57,23 @@ while (true) {
     } 
     switch (escolha) {
         case 1:
-            treinarPoderAtaque(p);
+            const opcaoTrain: number = +teclado("O que deseja fazer?")
+            console.log("1. Flexões")
+            console.log("2. Meditação")
+            
+            switch(opcaoTrain) {
+                case 1: 
+                    treinarPoderAtaque(p);
+                    break
+
+                case 2:
+                    treinarPoderMagico(p);
+                    break
+                    
+                default:
+                    console.log("Algo deu errado tente novamente!")
+                    break
+            }
             break;
         case 2:
             treinarPoderDefesa(p);
@@ -151,6 +169,7 @@ while (true) {
                                 
                                 default:
                                     console.log("Opção inválida, tente novamente.");
+                                    break
                             }
                     }
 
@@ -190,6 +209,7 @@ while (true) {
                                 
                                 default:
                                     console.log("Opção inválida, tente novamente.");
+                                    break
                             }
                     }
 
@@ -202,7 +222,32 @@ while (true) {
             break
 
         case 8:
+            console.log("Como deseja se atacar?")
+            console.log("1. Com a Arma")
+            console.log("2. Com a Magia")
+            const escolhaDeAtaque: number = +teclado("Opção: ")
 
+            switch(escolhaDeAtaque){
+                case 1:
+                    p.ataqueComArma();
+                    console.log(`${p.nome} causou ${p.poderAtaque} de Dano em ${p.nome} e ficou com ${p.vidaAtual} de Vida`)
+                    break
+
+                case 2:
+                    if (p.manaAtual <= 0){
+                        console.log("Você não possuí mana!")
+                        break
+                    } else{
+                        p.ataqueComMagia();
+                        console.log(`${p.nome} causou ${p.poderMagico} de Dano Mágico em si mesmo e ficou com ${p.vidaAtual} de Vida e com ${p.manaAtual} de mana.`)
+                        break
+                    }
+
+                default:
+                    console.log("Opção inválida, tente novamente.");
+                    break;
+            }
+            break
 
         default:
             console.log("Opção inválida, tente novamente.");
@@ -213,11 +258,20 @@ while (true) {
 function treinarPoderAtaque(person: Personagem): void {
     person.treinarPoderAtaque();
 }
+function treinarPoderMagico(person: Personagem): void {
+    person.treinarPoderMagico();
+}
 function treinarPoderDefesa(person: Personagem): void {
     person.treinarPoderDefesa();
 }
 function confirmaVida(person: Personagem): boolean {
     return person.estaVivo();
+}
+function ataqueComArma(person: Personagem): void {
+    person.ataqueComArma();
+}
+function ataqueComMagia(person: Personagem): void {
+    person.ataqueComMagia();
 }
 
 console.table(p);

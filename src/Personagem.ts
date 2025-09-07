@@ -17,6 +17,7 @@ export class Personagem {
     public vidaMaxima: number
 
     public poderAtaque: number
+    public poderMagico: number
     public poderDefesa: number
 
     public slotMagia1: string;
@@ -39,6 +40,7 @@ export class Personagem {
         this.vidaMaxima = 0;
 
         this.poderAtaque = 0;
+        this.poderMagico = 0;
         this.poderDefesa = 0;
         
         this.slotMagia1 = "";
@@ -49,6 +51,10 @@ export class Personagem {
     treinarPoderAtaque(): void {
         const incrementoDoTreino: number = Util.gerarNumeroAleatorio(5, 15);
         this.poderAtaque += incrementoDoTreino + this.poderAtaque * 1.1;
+        }
+    treinarPoderMagico(): void {
+        const incrementoDoTreino: number = Util.gerarNumeroAleatorio(5, 15);
+        this.poderMagico += incrementoDoTreino + this.poderMagico * 1.1;
         }
 
     treinarPoderDefesa(): void {
@@ -65,6 +71,7 @@ export class Personagem {
             this.manaMaxima += 3;
             this.vidaMaxima += 4;
             this.poderAtaque += 2;
+            this.poderMagico += 2;
             this.poderDefesa += 2;
         }
     }
@@ -181,6 +188,14 @@ export class Personagem {
         const magiaNi2 = Util.gerarMagia2();
 
         return { magiaNi1, magiaNi2 };
+    }
+
+    ataqueComArma(): void{
+        this.vidaAtual = this.vidaAtual - this.poderAtaque
+    }
+    ataqueComMagia(): void{
+        this.vidaAtual = this.vidaAtual - this.poderMagico
+        this.manaAtual = this.manaAtual - this.poderMagico
     }
 
 }
