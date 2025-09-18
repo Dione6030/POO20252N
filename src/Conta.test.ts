@@ -38,6 +38,15 @@ describe("Quando depositar", () => {
         //Validação
         expect(conta.saldo).toBe(100);
     })
+
+    it("Não deve aceitar depósito de valor zero", () => {
+        const conta: Conta = new Conta();
+        conta.saldo = 100;
+
+        conta.depositar(0);
+
+        expect(conta.saldo).toBe(100);
+    })
 })
 
 describe("Quando sacar", () => {
@@ -47,5 +56,14 @@ describe("Quando sacar", () => {
         conta.saldo = 100;
 
         expect(() => { conta.sacar(-50) }).toThrow("inválido");
+    })
+
+    it("Deve diminuir o saldo ao sacar um valor positivo", () => {
+        const conta: Conta = new Conta();
+        conta.saldo = 100;
+
+        conta.sacar(50);
+
+        expect(conta.saldo).toBe(50);
     })
 })
