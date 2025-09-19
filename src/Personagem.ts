@@ -47,6 +47,11 @@ export class Personagem {
         this.slotMagia2 = "";
         this.slotMagia3 = "";
     }
+    
+    estaVivo(): boolean{
+        const vivo: number = this.vidaAtual
+        return (vivo > 0)
+    }
 
     treinarPoderAtaque(): void {
         const incrementoDoTreino: number = Util.gerarNumeroAleatorio(5, 15);
@@ -62,6 +67,37 @@ export class Personagem {
         this.poderDefesa += incrementoDoTreino + this.poderDefesa * 1.1;
         }
 
+    ataqueComArma(): void{
+        if (this.vidaAtual - this.poderAtaque < 0) {
+            this.vidaAtual = 0;
+        } else {
+            this.vidaAtual = this.vidaAtual - this.poderAtaque
+        }
+    }
+    ataqueComMagia(): void{
+        if (this.manaAtual < this.poderMagico) {
+            console.log("Mana insuficiente para ataque mágico.");
+            return;
+        }
+        if (this.vidaAtual - this.poderMagico < 0) {
+            this.vidaAtual = 0;
+        } else {
+            this.vidaAtual = this.vidaAtual - this.poderMagico
+            this.manaAtual = this.manaAtual - this.poderMagico
+        }
+    }
+
+    descansar(): void{
+        const recuperarVida = Math.floor(this.vidaMaxima * 0.20)
+        const recuperarMana = Math.floor(this.manaMaxima * 0.20)
+
+        this.vidaAtual = Math.min(this.vidaAtual + recuperarVida, this.vidaMaxima);
+        this.manaAtual = Math.min(this.manaAtual + recuperarMana, this.manaMaxima);
+
+        console.log(`Você descansou e recuperou ${recuperarVida} de vida e ${recuperarMana} de mana.`);
+        console.log(`Vida atual: ${this.vidaAtual}/${this.vidaMaxima}, Mana atual: ${this.manaAtual}/${this.manaMaxima}`);
+    }
+
     subirNivel(): void{
         const experienciaNecessaria: number = this.nivel * 100;
         if (this.experiencia >= experienciaNecessaria){
@@ -74,22 +110,6 @@ export class Personagem {
             this.poderMagico += 2;
             this.poderDefesa += 2;
         }
-    }
-
-    estaVivo(): boolean{
-        const vivo: number = this.vidaAtual
-        return (vivo > 0)
-    }
-
-    descansar(): void{
-        const recuperarVida = Math.floor(this.vidaMaxima * 0.20)
-        const recuperarMana = Math.floor(this.manaMaxima * 0.20)
-
-        this.vidaAtual = Math.min(this.vidaAtual + recuperarVida, this.vidaMaxima);
-        this.manaAtual = Math.min(this.manaAtual + recuperarMana, this.manaMaxima);
-
-        console.log(`Você descansou e recuperou ${recuperarVida} de vida e ${recuperarMana} de mana.`);
-        console.log(`Vida atual: ${this.vidaAtual}/${this.vidaMaxima}, Mana atual: ${this.manaAtual}/${this.manaMaxima}`);
     }
 
     procurarEquipamento(): boolean{
@@ -189,13 +209,4 @@ export class Personagem {
 
         return { magiaNi1, magiaNi2 };
     }
-
-    ataqueComArma(): void{
-        this.vidaAtual = this.vidaAtual - this.poderAtaque
-    }
-    ataqueComMagia(): void{
-        this.vidaAtual = this.vidaAtual - this.poderMagico
-        this.manaAtual = this.manaAtual - this.poderMagico
-    }
-
 }
