@@ -1,114 +1,221 @@
 import { th } from "@faker-js/faker";
 import { Util } from "./Util";
 
-export class Personagem {
-    public nome: string;
-    public classe: string;
-    public raca: string;
-    public nivel: number
-    public experiencia: number
+export default class Personagem {
+    private _nome: string;
+    private _classe: string;
+    private _raca: string;
+    private _nivel: number
+    private _experiencia: number
 
-    public tipoArma: string;
-    public tipoArmadura: string;
+    private _tipoArma: string;
+    private _tipoArmadura: string;
     
-    public manaAtual: number
-    public manaMaxima: number
-    public vidaAtual: number
-    public vidaMaxima: number
+    private _manaAtual: number
+    private _manaMaxima: number
+    private _vidaAtual: number
+    private _vidaMaxima: number
 
-    public poderAtaque: number
-    public poderMagico: number
-    public poderDefesa: number
+    private _poderAtaque: number
+    private _poderMagico: number
+    private _poderDefesa: number
 
-    public slotMagia1: string;
-    public slotMagia2: string;
-    public slotMagia3: string;
+    private _slotMagia1: string;
+    private _slotMagia2: string;
+    private _slotMagia3: string;
+
+    public get nome(): string {
+        if (this._nome.length <3 || this._nome.length >20) {
+            throw new Error("Nome inválido.");
+        }
+        return this._nome;
+    }
+
+    public get classe(): string {
+        return this._classe;
+    }
+
+    public get raca(): string {
+        return this._raca;
+    }
+
+    public get nivel(): number {
+        if (this._nivel > 4) {
+            this._nivel = 4;
+        }
+        if (this.nivel < 1){
+            this._nivel = 1;
+        }
+        return this._nivel;
+    }
+
+    public get experiencia(): number {
+        if (this._nivel > 3) {
+            this._experiencia = 0;
+        }
+        return this._experiencia;
+    }
+
+    public get tipoArma(): string {
+        if (!Util.armaExiste(this._tipoArma)){
+            console.log("Personagem sem arma, procure por equipamentos.");
+            return "";
+        }
+        if (this._tipoArma.length === 0){
+            console.log("Personagem sem arma, procure por equipamentos.");
+            return "";
+        }
+        return this._tipoArma;
+    }
+
+    public get tipoArmadura(): string {
+        if (!Util.armaExiste(this._tipoArma)){
+            console.log("Personagem sem armadura, procure por equipamentos.");
+            return "";
+        }
+        if (this._tipoArmadura.length === 0){
+            console.log("Personagem sem armadura, procure por equipamentos.");
+            return "";
+        }
+        return this._tipoArmadura;
+    }
+
+    public get manaAtual(): number {
+        if (this._manaAtual < 0) {
+            this._manaAtual = 0;
+        }
+        return this._manaAtual;
+    }
+
+    public get manaMaxima(): number {
+        if (this._manaMaxima < 0) {
+            this._manaMaxima = 0;
+        }
+        return this._manaMaxima;
+    }
+
+    public get vidaAtual(): number {
+        if (this._vidaAtual < 0) {
+            this._vidaAtual = 0;
+            !this.estaVivo()
+        }
+        return this._vidaAtual;
+    }
+
+    public get vidaMaxima(): number {
+        return this._vidaMaxima;
+    }
+
+    public get poderAtaque(): number {
+        return this._poderAtaque;
+    }
+
+    public get poderMagico(): number {
+        return this._poderMagico;
+    }
+
+    public get poderDefesa(): number {
+        return this._poderDefesa;
+    }
+
+    public get slotMagia1(): string {
+        return this._slotMagia1;
+    }
+
+    public get slotMagia2(): string {
+        return this._slotMagia2;
+    }
+
+    public get slotMagia3(): string {
+        return this._slotMagia3;
+    }
+
     
     constructor(nome: string) {
-        this.nome = nome;
-        this.classe = "";
-        this.raca = "";
-        this.nivel = 1;
-        this.experiencia = 0;
+        this._nome = nome;
+        this._classe = "";
+        this._raca = "";
+        this._nivel = 1;
+        this._experiencia = 0;
 
-        this.tipoArma = "";
-        this.tipoArmadura = "";
+        this._tipoArma = "";
+        this._tipoArmadura = "";
 
-        this.manaAtual = 0;
-        this.manaMaxima = 0;
-        this.vidaAtual = 0;
-        this.vidaMaxima = 0;
+        this._manaAtual = 0;
+        this._manaMaxima = 0;
+        this._vidaAtual = 0;
+        this._vidaMaxima = 0;
 
-        this.poderAtaque = 0;
-        this.poderMagico = 0;
-        this.poderDefesa = 0;
+        this._poderAtaque = 0;
+        this._poderMagico = 0;
+        this._poderDefesa = 0;
         
-        this.slotMagia1 = "";
-        this.slotMagia2 = "";
-        this.slotMagia3 = "";
+        this._slotMagia1 = "";
+        this._slotMagia2 = "";
+        this._slotMagia3 = "";
     }
     
     estaVivo(): boolean{
-        const vivo: number = this.vidaAtual
+        const vivo: number = this._vidaAtual
         return (vivo > 0)
     }
 
     treinarPoderAtaque(): void {
         const incrementoDoTreino: number = Util.gerarNumeroAleatorio(5, 15);
-        this.poderAtaque += incrementoDoTreino + this.poderAtaque * 1.1;
+        this._poderAtaque += incrementoDoTreino + this._poderAtaque * 1.1;
         }
     treinarPoderMagico(): void {
         const incrementoDoTreino: number = Util.gerarNumeroAleatorio(5, 15);
-        this.poderMagico += incrementoDoTreino + this.poderMagico * 1.1;
+        this._poderMagico += incrementoDoTreino + this._poderMagico * 1.1;
         }
 
     treinarPoderDefesa(): void {
         const incrementoDoTreino: number = Util.gerarNumeroAleatorio(5, 15);
-        this.poderDefesa += incrementoDoTreino + this.poderDefesa * 1.1;
+        this._poderDefesa += incrementoDoTreino + this._poderDefesa * 1.1;
         }
 
     ataqueComArma(): void{
-        if (this.vidaAtual - this.poderAtaque < 0) {
-            this.vidaAtual = 0;
+        if (this._vidaAtual - this._poderAtaque < 0) {
+            this._vidaAtual = 0;
         } else {
-            this.vidaAtual = this.vidaAtual - this.poderAtaque
+            this._vidaAtual = this._vidaAtual - this._poderAtaque
         }
     }
     ataqueComMagia(): void{
-        if (this.manaAtual < this.poderMagico) {
+        if (this._manaAtual < this._poderMagico) {
             console.log("Mana insuficiente para ataque mágico.");
             return;
         }
-        if (this.vidaAtual - this.poderMagico < 0) {
-            this.vidaAtual = 0;
+        if (this._vidaAtual - this._poderMagico < 0) {
+            this._vidaAtual = 0;
         } else {
-            this.vidaAtual = this.vidaAtual - this.poderMagico
-            this.manaAtual = this.manaAtual - this.poderMagico
+            this._vidaAtual = this._vidaAtual - this._poderMagico
+            this._manaAtual = this._manaAtual - this._poderMagico
         }
     }
 
     descansar(): void{
-        const recuperarVida = Math.floor(this.vidaMaxima * 0.20)
-        const recuperarMana = Math.floor(this.manaMaxima * 0.20)
+        const recuperarVida = Math.floor(this._vidaMaxima * 0.20)
+        const recuperarMana = Math.floor(this._manaMaxima * 0.20)
 
-        this.vidaAtual = Math.min(this.vidaAtual + recuperarVida, this.vidaMaxima);
-        this.manaAtual = Math.min(this.manaAtual + recuperarMana, this.manaMaxima);
+        this._vidaAtual = Math.min(this._vidaAtual + recuperarVida, this._vidaMaxima);
+        this._manaAtual = Math.min(this._manaAtual + recuperarMana, this._manaMaxima);
 
         console.log(`Você descansou e recuperou ${recuperarVida} de vida e ${recuperarMana} de mana.`);
-        console.log(`Vida atual: ${this.vidaAtual}/${this.vidaMaxima}, Mana atual: ${this.manaAtual}/${this.manaMaxima}`);
+        console.log(`Vida atual: ${this._vidaAtual}/${this._vidaMaxima}, Mana atual: ${this._manaAtual}/${this._manaMaxima}`);
     }
 
     subirNivel(): void{
-        const experienciaNecessaria: number = this.nivel * 100;
-        if (this.experiencia >= experienciaNecessaria){
-            this.nivel += 1;
-            this.experiencia = 0; // Reseta a experiência
+        const experienciaNecessaria: number = this._nivel * 100;
+        if (this._experiencia >= experienciaNecessaria){
+            this._nivel += 1;
+            this._experiencia = 0; // Reseta a experiência
             // Você pode adicionar outros efeitos de subir de nível aqui
-            this.manaMaxima += 3;
-            this.vidaMaxima += 4;
-            this.poderAtaque += 2;
-            this.poderMagico += 2;
-            this.poderDefesa += 2;
+            this._manaMaxima += 3;
+            this._vidaMaxima += 4;
+            this._poderAtaque += 2;
+            this._poderMagico += 2;
+            this._poderDefesa += 2;
         }
     }
 
@@ -155,8 +262,8 @@ export class Personagem {
         const i= indice - 1;
         const arma = this.inventarioArma[i];
         if (arma !== undefined) {
-            this.tipoArma = arma;
-            console.log(`Arma ${this.tipoArma} equipada.`);
+            this._tipoArma = arma;
+            console.log(`Arma ${this._tipoArma} equipada.`);
             return true;
         } else{
             console.log("Índice inválido para equipar arma.");
@@ -167,8 +274,8 @@ export class Personagem {
         const i= indice - 1;
         const armadura = this.inventarioArmadura[i];
         if (armadura !== undefined) {
-            this.tipoArmadura = armadura;
-            console.log(`Armadura ${this.tipoArmadura} equipada.`);
+            this._tipoArmadura = armadura;
+            console.log(`Armadura ${this._tipoArmadura} equipada.`);
             return true;
         } else{
             console.log("Índice inválido para equipar armadura.");

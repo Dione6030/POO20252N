@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
-import { Personagem } from "./Personagem";
-import { Util } from "./Util";
+import  Personagem  from "../Personagem";
+import { Util } from "../Util";
 
 /*
 TESTES DA AULA: Personagem está vivo
@@ -91,7 +91,7 @@ describe("Personagem Vive", () => {
 })
 
 // Diz ao Jest para substituir a classe Util por uma simulação
-jest.mock("./Util");
+jest.mock("../Util");
 
 // Teste da Aula: treinarPoderAtaque (Lidando com Aleatoriedade)
 describe("treinarPoderAtaque", () => {

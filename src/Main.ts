@@ -1,4 +1,4 @@
-import { Personagem } from "./Personagem";
+import  Personagem  from "./Personagem";
 import Prompt from "prompt-sync";
 import { AtributosArma } from "./Armas"
 import { el } from "@faker-js/faker";

@@ -147,7 +147,7 @@ export class Util {
   "Katana Tempestuosa de Raijin",
   "Katana Glacial de Yukiko",
   "Katana Abissal de Izanami",
-  "Katana da Lua Sangrenta de Akuma",
+  "Katana do Lunar Sangrento de Akuma",
 
   // Foice
   "Foice de Hades",
@@ -263,7 +263,7 @@ export class Util {
   "Adaga Tempestuosa de Zeus",
   "Adaga Glacial de Skadi",
   "Adaga Abissal de Leviatã",
-  "Adaga da Lua Sangrenta de Akasha",
+  "Adaga do Lunar Sangrento de Akasha",
 
   // Machadinhas
   "Machado curta de Ulfgar",
@@ -357,7 +357,7 @@ export class Util {
   "Varinha Glacial de Borealis",
   "Varinha Abissal de Leviatã",
   "Varinha Solar de Apollo",
-  "Varinha Lunar de Selene",
+  "Varinha Lunar de Selene"
             ];
             const indice4 = Util.gerarNumeroAleatorio(0, cajadosVarinhas.length - 1)
             const nivelAleatório4 = Util.gerarNumeroAleatorio(1,3)
@@ -696,10 +696,10 @@ export class Util {
 
     }
 
-    static gerarInimigos(): string{
-        const dQuatro = Util.gerarNumeroAleatorio(1, 4);
+    static gerarInimigosN1(): string{
+        const dDois = Util.gerarNumeroAleatorio(1, 2);
 
-        switch(dQuatro){
+        switch(dDois){
         case 1:
             const slimes =  [
                 "Slime sem elemento",
@@ -713,30 +713,6 @@ export class Util {
             return `${slimes[indice1]} [Nível: ${nivelAleatório1}]`
 
         case 2:
-            const imps = [
-                "Imp sem elemento",
-                "Imp de Fogo",
-                "Imp de Gelo",
-                "Imp de Trovão",
-                "Imp das Sombras"
-            ];
-            const indice2 = Util.gerarNumeroAleatorio(0, imps.length - 1)
-            const nivelAleatório2 = Util.gerarNumeroAleatorio(1,3)
-            return `${imps[indice2]} [Nível: ${nivelAleatório2}]`
-
-        case 3:
-            const zumbis = [
-                "Zumbi comum",
-                "Zumbi de Fogo",
-                "Zumbi de Gelo",
-                "Zumbi de Trovão",
-                "Zumbi das Sombras"
-            ];
-            const indice3 = Util.gerarNumeroAleatorio(0, zumbis.length - 1)
-            const nivelAleatório3 = Util.gerarNumeroAleatorio(1,3)
-            return `${zumbis[indice3]} [Nível: ${nivelAleatório3}]`
-
-        case 4:
             const bandidos =  [
                 "Bandido Ladrão",
                 "Bandido Guerreiro",
@@ -757,6 +733,377 @@ export class Util {
         }
 
     }
+
+    static gerarInimigosN2(): string{
+        const dDois = Util.gerarNumeroAleatorio(1, 2);
+
+        switch(dDois){
+            
+        case 1:
+            const imps = [
+                "Imp sem elemento",
+                "Imp de Fogo",
+                "Imp de Gelo",
+                "Imp de Trovão",
+                "Imp das Sombras"
+            ];
+            const indice2 = Util.gerarNumeroAleatorio(0, imps.length - 1)
+            const nivelAleatório2 = Util.gerarNumeroAleatorio(1,3)
+            return `${imps[indice2]} [Nível: ${nivelAleatório2}]`
+
+        case 2:
+            const zumbis = [
+                "Zumbi comum",
+                "Zumbi de Fogo",
+                "Zumbi de Gelo",
+                "Zumbi de Trovão",
+                "Zumbi das Sombras"
+            ];
+            const indice3 = Util.gerarNumeroAleatorio(0, zumbis.length - 1)
+            const nivelAleatório3 = Util.gerarNumeroAleatorio(1,3)
+            return `${zumbis[indice3]} [Nível: ${nivelAleatório3}]`
+
+            default:
+            throw new Error("Alguma coisa deu errado");
+            break;
+        }
+    }
+
+    static armaExiste(nome: string): boolean {
+        const armas= [
+            
+  // Martelo Gigante
+  "Martelo Gigante de Moradin",
+  "Martelo Gigante de Grommash",
+  "Martelo Gigante de Hrothgar",
+  "Martelo Gigante de Thrain",
+  "Martelo Gigante de Korgan",
+  "Martelo Gigante de Durotan",
+  "Martelo Gigante Flamejante de Surtr",
+  "Martelo Gigante Congelante de Skadi",
+  "Martelo Gigante Trovejante de Thor",
+  "Martelo Gigante Sombrio de Gul’dan",
+  "Martelo Gigante de Balin",
+  "Martelo Gigante de Ragnar",
+  "Martelo Gigante de Krull",
+  "Martelo Gigante de Valthor",
+  "Martelo Gigante de Ogrim",
+  "Martelo Gigante Ígneo de Ignar",
+  "Martelo Gigante Tempestuoso de Raijin",
+  "Martelo Gigante Glacial de Ymir",
+  "Martelo Gigante Abissal de Nergal",
+  "Martelo Gigante da Ruína de Malphas",
+
+  // Espadão
+  "Espada Gigante de Drizzt",
+  "Espada Gigante de Elric",
+  "Espada Gigante de Arkhon",
+  "Espada Gigante de Guts",
+  "Espada Gigante de Arthas",
+  "Espada Gigante Flamejante de Ifrit",
+  "Espada Gigante Congelante de Shiva",
+  "Espada Gigante Trovejante de Zeus",
+  "Espada Gigante Sombrio de Noctis",
+  "Espada Gigante de Beowulf",
+  "Espada Gigante de Siegfried",
+  "Espada Gigante de Astarion",
+  "Espada Gigante de Vlad",
+  "Espada Gigante de Balthazar",
+  "Espada Gigante de Xandar",
+  "Espada Gigante Ígneo de Belial",
+  "Espada Gigante Tempestuoso de Fujin",
+  "Espada Gigante Glacial de Khione",
+  "Espada Gigante Abissal de Orcus",
+  "Espada Gigante da Destruição de Veyra",
+
+  // Machadão
+  "Machado Gigante de Gruumsh",
+  "Machado Gigante de Thrall",
+  "Machado Gigante de Garrosh",
+  "Machado Gigante de Conan",
+  "Machado Gigante de Dáin",
+  "Machado Gigante Flamejante de Efreet",
+  "Machado Gigante Congelante de Boreas",
+  "Machado Gigante Trovejante de Perun",
+  "Machado Gigante Sombrio de Zargon",
+  "Machado Gigante de Ragnarök",
+  "Machado Gigante de Durin",
+  "Machado Gigante de Magni",
+  "Machado Gigante de Brokkr",
+  "Machado Gigante de Sindri",
+  "Machado Gigante de Ulfgar",
+  "Machado Gigante Ígneo de Pyros",
+  "Machado Gigante Tempestuoso de Typhon",
+  "Machado Gigante Glacial de Jotun",
+  "Machado Gigante Abissal de Chernobog",
+  "Machado Gigante da Carnificina de Morbius",
+
+  // Mangual
+  "Mangual de Abaddon",
+  "Mangual de Tyrael",
+  "Mangual de Leonidas",
+  "Mangual de Gideon",
+  "Mangual de Arcturus",
+  "Mangual Flamejante de Balrog",
+  "Mangual Congelante de Fenrir",
+  "Mangual Trovejante de Indra",
+  "Mangual Sombrio de Mephisto",
+  "Mangual de Lancelot",
+  "Mangual de Mordred",
+  "Mangual de Ulric",
+  "Mangual de Sigmar",
+  "Mangual de Darius",
+  "Mangual de Kratos",
+  "Mangual Ígneo de Agni",
+  "Mangual Tempestuoso de Enlil",
+  "Mangual Glacial de Sköll",
+  "Mangual Abissal de Nyx",
+  "Mangual da Tormenta de Zariel",
+  // Espada Longa
+  "Espada Longa de Elendil",
+  "Espada Longa de Aragorn",
+  "Espada Longa de Isildur",
+  "Espada Longa de Eddard",
+  "Espada Longa de Roland",
+  "Espada Longa Flamejante de Salamandra",
+  "Espada Longa Congelante de Valkyrion",
+  "Espada Longa Trovejante de Raiden",
+  "Espada Longa Sombria de Tenebris",
+  "Espada Longa de Corvus",
+  "Espada Longa de Galahad",
+  "Espada Longa de Cú Chulainn",
+  "Espada Longa de Tancred",
+  "Espada Longa de Rhaegar",
+  "Espada Longa de Altair",
+  "Espada Longa Ígnea de Baal",
+  "Espada Longa Tempestuosa de Enki",
+  "Espada Longa Glacial de Borealis",
+  "Espada Longa Abissal de Leviatã",
+  "Espada Longa da Perdição de Veyron",
+
+  // Katana
+  "Katana de Musashi",
+  "Katana de Kenshin",
+  "Katana de Sesshomaru",
+  "Katana de Itto",
+  "Katana de Raiden",
+  "Katana Flamejante de Susanoo",
+  "Katana Congelante de Haku",
+  "Katana Trovejante de Kaminari",
+  "Katana Sombria de Zabuza",
+  "Katana de Jinpachi",
+  "Katana de Yasuo",
+  "Katana de Genji",
+  "Katana de Hanzo",
+  "Katana de Orochi",
+  "Katana de Ryu",
+  "Katana Ígnea de Amaterasu",
+  "Katana Tempestuosa de Raijin",
+  "Katana Glacial de Yukiko",
+  "Katana Abissal de Izanami",
+  "Katana do Lunar Sangrento de Akuma",
+
+  // Foice
+  "Foice de Hades",
+  "Foice de Thanatos",
+  "Foice de Corvus",
+  "Foice de Alucard",
+  "Foice de Belphegor",
+  "Foice Flamejante de Amon",
+  "Foice Congelante de Hel",
+  "Foice Trovejante de Baal",
+  "Foice Sombria de Erebus",
+  "Foice de Lilith",
+  "Foice de Azrael",
+  "Foice de Malthael",
+  "Foice de Dagon",
+  "Foice de Morbius",
+  "Foice de Carmilla",
+  "Foice Ígnea de Surtr",
+  "Foice Tempestuosa de Jupiter",
+  "Foice Glacial de Skadi",
+  "Foice Abissal de Nergal",
+  "Foice da Morte Rubra de Samael",
+
+  // Lança Longa
+  "Lança Longa de Odin",
+  "Lança Longa de Achilles",
+  "Lança Longa de Hector",
+  "Lança Longa de Leonidas",
+  "Lança Longa de Guan Yu",
+  "Lança Longa Flamejante de Prometeu",
+  "Lança Longa Congelante de Boreas",
+  "Lança Longa Trovejante de Perun",
+  "Lança Longa Sombria de Anubis",
+  "Lança Longa de Sigurd",
+  "Lança Longa de Perseu",
+  "Lança Longa de Atalanta",
+  "Lança Longa de Beowulf",
+  "Lança Longa de Kratos",
+  "Lança Longa de Vladislav",
+  "Lança Longa Ígnea de Hephaestus",
+  "Lança Longa Tempestuosa de Enlil",
+  "Lança Longa Glacial de Ymir",
+  "Lança Longa Abissal de Leviatã",
+  "Lança Longa da Aurora de Hyperion",
+
+  // Porrete
+  "Porrete de Grimgor",
+  "Porrete de Durotan",
+  "Porrete de Kharn",
+  "Porrete de Zogoth",
+  "Porrete de Brak",
+  "Porrete Flamejante de Pyron",
+  "Porrete Congelante de Kaldur",
+  "Porrete Trovejante de Kord",
+  "Porrete Sombrio de Veyros",
+  "Porrete de Skarn",
+  "Porrete de Durok",
+  "Porrete de Magrok",
+  "Porrete de Balrog",
+  "Porrete de Morgul",
+  "Porrete de Zalthar",
+  "Porrete Ígneo de Ifrit",
+  "Porrete Tempestuoso de Raiden",
+  "Porrete Glacial de Sköll",
+  "Porrete Abissal de Dagon",
+  "Porrete da Ruína de Belak",
+
+  // Sabre
+  "Sabre de Draven",
+  "Sabre de Talion",
+  "Sabre de Alaric",
+  "Sabre de Corvus",
+  "Sabre de Kael",
+  "Sabre Flamejante de Ifrit",
+  "Sabre Congelante de Borealis",
+  "Sabre Trovejante de Enlil",
+  "Sabre Sombrio de Nox",
+  "Sabre de Roland",
+  "Sabre de Tristan",
+  "Sabre de Mordekai",
+  "Sabre de Zarek",
+  "Sabre de Veymar",
+  "Sabre de Alistair",
+  "Sabre Ígneo de Belial",
+  "Sabre Tempestuoso de Fujin",
+  "Sabre Glacial de Khione",
+  "Sabre Abissal de Orcus",
+  "Sabre da Tormenta Carmesim de Ragnor",
+
+  // Adagas
+  "Adaga de Veyra",
+  "Adaga de Ezio",
+  "Adaga de Altair",
+  "Adaga de Zed",
+  "Adaga de Lilith",
+  "Adaga Flamejante de Ifrit",
+  "Adaga Congelante de Shiva",
+  "Adaga Trovejante de Raijin",
+  "Adaga Sombria de Nyx",
+  "Adaga de Artemis",
+  "Adaga de Loki",
+  "Adaga de Fenrir",
+  "Adaga de Jinx",
+  "Adaga de Morrigan",
+  "Adaga de Draven",
+  "Adaga Ígnea de Hades",
+  "Adaga Tempestuosa de Zeus",
+  "Adaga Glacial de Skadi",
+  "Adaga Abissal de Leviatã",
+  "Adaga do Lunar Sangrento de Akasha",
+
+  // Machadinhas
+  "Machado curta de Ulfgar",
+  "Machado curta de Thrall",
+  "Machado curta de Durotan",
+  "Machado curta de Ragnar",
+  "Machado curta de Zalthar",
+  "Machado curta Flamejante de Balrog",
+  "Machado curta Congelante de Sköll",
+  "Machado curta Trovejante de Indra",
+  "Machado curta Sombria de Veyros",
+  "Machado curta de Korgan",
+  "Machado curta de Grom",
+  "Machado curta de Orgrim",
+  "Machado curta de Grimgor",
+  "Machado curta de Magni",
+  "Machado curta de Brokkr",
+  "Machado curta Ígnea de Pyros",
+  "Machado curta Tempestuosa de Typhon",
+  "Machado curta Glacial de Boreas",
+  "Machado curta Abissal de Dagon",
+  "Machado curta da Carnificina de Malphas",
+
+  // Luvas de Combate
+  "Luvas de Combate de Ryu",
+  "Luvas de Combate de Ken",
+  "Luvas de Combate de Akuma",
+  "Luvas de Combate de Baki",
+  "Luvas de Combate de Kazuya",
+  "Luvas de Combate Flamejantes de Ifrit",
+  "Luvas de Combate Congelantes de Sub-Zero",
+  "Luvas de Combate Trovejantes de Raiden",
+  "Luvas de Combate Sombrias de Noctis",
+  "Luvas de Combate de Jin",
+  "Luvas de Combate de Hwoarang",
+  "Luvas de Combate de Balrog",
+  "Luvas de Combate de Dudley",
+  "Luvas de Combate de Rock",
+  "Luvas de Combate de Terry",
+  "Luvas de Combate Ígneas de Agni",
+  "Luvas de Combate Tempestuosas de Fujin",
+  "Luvas de Combate Glaciais de Shiva",
+  "Luvas de Combate Abissais de Nyx",
+  "Luvas de Combate do Caos de Azazel",
+
+  // Lança Curta
+  "Lança Curta de Ares",
+  "Lança Curta de Hektor",
+  "Lança Curta de Atalanta",
+  "Lança Curta de Achilles",
+  "Lança Curta de Guan Yu",
+  "Lança Curta Flamejante de Prometeu",
+  "Lança Curta Congelante de Skadi",
+  "Lança Curta Trovejante de Zeus",
+  "Lança Curta Sombria de Erebus",
+  "Lança Curta de Beowulf",
+  "Lança Curta de Perseus",
+  "Lança Curta de Hector",
+  "Lança Curta de Kratos",
+  "Lança Curta de Leonidas",
+  "Lança Curta de Corvus",
+  "Lança Curta Ígnea de Surtr",
+  "Lança Curta Tempestuosa de Raijin",
+  "Lança Curta Glacial de Ymir",
+  "Lança Curta Abissal de Leviatã",
+  "Lança Curta da Perdição de Thanatos",
+
+  // Cajados
+  "Cajado Flamejante de Fênix",
+  "Cajado Congelante de Ymir",
+  "Cajado Trovejante de Thor",
+  "Cajado Sombrio de Vecna",
+  "Cajado Ígneo de Ifrit",
+  "Cajado Glacial de Skadi",
+  "Cajado Abissal de Dagon",
+  "Cajado Solar de Amaterasu",
+  "Cajado Lunar de Tsukuyomi",
+
+  // Varinhas
+  "Varinha Flamejante de Salamandra",
+  "Varinha Congelante de Glacius",
+  "Varinha Trovejante de Raijin",
+  "Varinha Sombria de Noctis",
+  "Varinha Ígnea de Pyros",
+  "Varinha Glacial de Borealis",
+  "Varinha Abissal de Leviatã",
+  "Varinha Solar de Apollo",
+  "Varinha Lunar de Selene"
+        ]
+        return armas.includes(nome);
+    }
+
 }
 
 for (let index = 0; index < 10; index++) {
