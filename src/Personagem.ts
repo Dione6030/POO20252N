@@ -1,5 +1,9 @@
 import { th } from "@faker-js/faker";
 import { Util } from "./Util";
+//Coloque isso no copilot!
+/*
+ eu quero que os atributos nome, nivel e raça da classe personagem e inimigo fiquem em uma unica superclasse que ficaria em um arquivo chamado Criatura.ts e os atributos de classe, mana, vida, poderFísico, Mágico e Defesa, em sejam associados de um arquivo chamado Atributos.ts, quero também que o tipoArma e Armadura se Associem ao "Armas.ts" e "Armaduras.ts", o atributo "classe" deve ser associado de um arquivo chamado "classe.ts", os slots de magia vão ser associados de um arquivo "magia.ts".
+*/
 
 export default class Personagem {
     private _nome: string;
@@ -16,7 +20,7 @@ export default class Personagem {
     private _vidaAtual: number
     private _vidaMaxima: number
 
-    private _poderAtaque: number
+    private _poderFísico: number
     private _poderMagico: number
     private _poderDefesa: number
 
@@ -25,10 +29,13 @@ export default class Personagem {
     private _slotMagia3: string;
 
     public get nome(): string {
+        return this._nome;
+    }
+    public set nome(novoNome: string) {
         if (this._nome.length <3 || this._nome.length >20) {
             throw new Error("Nome inválido.");
         }
-        return this._nome;
+        this._nome = novoNome;
     }
 
     public get classe(): string {
@@ -106,8 +113,8 @@ export default class Personagem {
         return this._vidaMaxima;
     }
 
-    public get poderAtaque(): number {
-        return this._poderAtaque;
+    public get poderFísico(): number {
+        return this._poderFísico;
     }
 
     public get poderMagico(): number {
@@ -146,7 +153,7 @@ export default class Personagem {
         this._vidaAtual = 0;
         this._vidaMaxima = 0;
 
-        this._poderAtaque = 0;
+        this._poderFísico = 0;
         this._poderMagico = 0;
         this._poderDefesa = 0;
         
@@ -160,9 +167,9 @@ export default class Personagem {
         return (vivo > 0)
     }
 
-    treinarPoderAtaque(): void {
+    treinarPoderFísico(): void {
         const incrementoDoTreino: number = Util.gerarNumeroAleatorio(5, 15);
-        this._poderAtaque += incrementoDoTreino + this._poderAtaque * 1.1;
+        this._poderFísico += incrementoDoTreino + this._poderFísico * 1.1;
         }
     treinarPoderMagico(): void {
         const incrementoDoTreino: number = Util.gerarNumeroAleatorio(5, 15);
@@ -175,10 +182,10 @@ export default class Personagem {
         }
 
     ataqueComArma(): void{
-        if (this._vidaAtual - this._poderAtaque < 0) {
+        if (this._vidaAtual - this._poderFísico < 0) {
             this._vidaAtual = 0;
         } else {
-            this._vidaAtual = this._vidaAtual - this._poderAtaque
+            this._vidaAtual = this._vidaAtual - this._poderFísico
         }
     }
     ataqueComMagia(): void{
@@ -213,7 +220,7 @@ export default class Personagem {
             // Você pode adicionar outros efeitos de subir de nível aqui
             this._manaMaxima += 3;
             this._vidaMaxima += 4;
-            this._poderAtaque += 2;
+            this._poderFísico += 2;
             this._poderMagico += 2;
             this._poderDefesa += 2;
         }
